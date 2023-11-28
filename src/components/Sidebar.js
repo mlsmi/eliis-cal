@@ -28,7 +28,7 @@ function Sidebar() {
             {item.children && open[index] && (
               <div>
                 {item.children.map((child) => (
-                  <div key={child.title} className="p-2">
+                  <div key={child.title} className="p-1">
                     <span className="text-sm">{child.title}</span>
                   </div>
                 ))}
