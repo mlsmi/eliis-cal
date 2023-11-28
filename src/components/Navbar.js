@@ -5,6 +5,10 @@ import logo from '../logo.png';
 import { userData } from '../userData';
 import { notificationsData } from '../notificationsData';
 
+function getInitials(firstname, lastname) {
+  return firstname[0] + lastname[0];
+}
+
 function Navbar() {
   return (
     <nav className="flex items-center justify-between p-6 navbar border-b border-gray h-16">
@@ -43,7 +47,7 @@ function Navbar() {
           <span className="nav-kindergarten text-sm">{userData.kindergarten}</span>
         </div>
         <div className="w-12 h-12 nav-profilebubble rounded-full text-white text-lg flex items-center justify-center relative">
-          <span>EÕ</span>
+          <span>{getInitials(userData.firstname, userData.lastname)}</span>
           <div className="absolute bottom-0 right-0 -mb-1 -mr-1 bg-white rounded-full w-5 h-5 flex items-center justify-center border-2 border-orange-500/60">
             <Icon path={mdiChevronDown} size={1} color="rgba(237, 137, 54, 0.6)" />
           </div>
