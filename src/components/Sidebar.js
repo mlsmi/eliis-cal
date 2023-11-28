@@ -11,13 +11,15 @@ function Sidebar() {
     };
   
     return (
-      <div className="hidden md:block md:w-64 bg-gray-200 h-full">
+      <div className="hidden md:block md:w-72 h-screen px-4 border-r border-gray">
         {menuItems.map((item, index) => (
-          <div key={item.title}>
-            <div className="flex justify-between" onClick={() => handleClick(index)}>
-              <div className="flex justify-between">
-                <Icon path={item.icon} size={1} />
-                <span>{item.title}</span>
+          <div key={item.title} className="menu-item-gradient p-1 border border-gray rounded-md my-2">
+            <div className="flex justify-between items-center" onClick={() => handleClick(index)}>
+              <div className="flex items-center">
+                <div className="bg-orange-500/60 rounded-md p-2 inline-block mr-2">
+                  <Icon path={item.icon} size={0.6} color="white" className="transform scale-125" />
+                </div>
+                <span className="text-sm font-semibold">{item.title}</span>
               </div>
               {item.children && (
                 <Icon path={open[index] ? mdiChevronDown : mdiChevronRight} size={1} />
@@ -26,9 +28,8 @@ function Sidebar() {
             {item.children && open[index] && (
               <div>
                 {item.children.map((child) => (
-                  <div key={child.title}>
-                    <Icon path={child.icon} size={1} />
-                    <span>{child.title}</span>
+                  <div key={child.title} className="p-2">
+                    <span className="text-sm">{child.title}</span>
                   </div>
                 ))}
               </div>

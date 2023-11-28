@@ -11,7 +11,7 @@ function getInitials(firstname, lastname) {
 
 function Navbar() {
   return (
-    <nav className="flex items-center justify-between p-6 navbar border-b border-gray h-16">
+    <nav className="flex items-center justify-between p-4 navbar border-b border-gray h-16">
       <div>
         <img src={logo} alt="logo" className="w-24 h-8" />
       </div>
@@ -43,7 +43,7 @@ function Navbar() {
           </div>
         </div>
         <div className="flex flex-col items-start relative vertical-border pl-6">
-          <span className="nav-user text-sm">{userData.firstname} {userData.lastname}</span>
+          <span className="nav-user text-sm font-bold">{userData.firstname} {userData.lastname}</span>
           <span className="nav-kindergarten text-sm">{userData.kindergarten}</span>
         </div>
         <div className="w-12 h-12 nav-profilebubble rounded-full text-white text-lg flex items-center justify-center relative">

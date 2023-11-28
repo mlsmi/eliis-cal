@@ -9,10 +9,6 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
-}
 
 .navbar {
   background-color: #F9F9F9;
@@ -20,7 +16,6 @@ code {
 
 .nav-user {
   color: #444444;
-  font-weight: bold;
 }
 
 .nav-kindergarten {
@@ -37,6 +32,27 @@ code {
 
 .border-gray {
   border-color: #C2C2C2;
+}
+
+.border-sidebar {
+  position: relative;
+}
+
+.border-sidebar::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  border: solid 3px transparent;
+  background: linear-gradient(#C2C2C2, #FFFFFF);
+  background-clip: padding-box, border-box; 
+  box-shadow: inset 0 0 0 2px transparent;
+}
+
+.menu-item-gradient {
+  background: linear-gradient(to bottom, #F9F9F9, #E0E0E0, #F9F9F9);
 }
 
 .vertical-border::before {
