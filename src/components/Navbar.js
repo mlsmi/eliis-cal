@@ -2,6 +2,8 @@ import React from 'react';
 import Icon from '@mdi/react';
 import { mdiBell, mdiBullhorn, mdiMessage, mdiCalendar, mdiCloud, mdiChevronDown } from '@mdi/js';
 import logo from '../logo.png';
+import { userData } from '../userData';
+import { notificationsData } from '../notificationsData';
 
 function Navbar() {
   return (
@@ -14,7 +16,7 @@ function Navbar() {
           <div className="bg-orange-500/60 rounded-full p-2 relative">
             <Icon path={mdiBell} size={1} color="white" />
             <div className="nav-notification absolute top-0 right-0 transform translate-x-1/2 -translate-y-1/2 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">
-              <span>6</span>
+              <span>{notificationsData.bell}</span>
             </div>
           </div>
           <div className="bg-orange-500/60 rounded-full p-2">
@@ -23,13 +25,13 @@ function Navbar() {
           <div className="bg-orange-500/60 rounded-full p-2 relative">
             <Icon path={mdiMessage} size={1} color="white" />
             <div className="nav-notification absolute top-0 right-0 transform translate-x-1/2 -translate-y-1/2 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">
-              <span>6</span>
+              <span>{notificationsData.message}</span>
             </div>
           </div>
           <div className="bg-orange-500/60 rounded-full p-2 relative">
             <Icon path={mdiCalendar} size={1} color="white" />
             <div className="nav-notification absolute top-0 right-0 transform translate-x-1/2 -translate-y-1/2 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">
-              <span>2</span>
+              <span>{notificationsData.calendar}</span>
             </div>
           </div>
           <div className="bg-orange-500/60 rounded-full p-2">
@@ -37,8 +39,8 @@ function Navbar() {
           </div>
         </div>
         <div className="flex flex-col items-start relative vertical-border pl-6">
-          <span className="nav-user text-sm">Eliis Õpetaja</span>
-          <span className="nav-kindergarten text-sm">Lasteaed ELIIS</span>
+          <span className="nav-user text-sm">{userData.firstname} {userData.lastname}</span>
+          <span className="nav-kindergarten text-sm">{userData.kindergarten}</span>
         </div>
         <div className="w-12 h-12 nav-profilebubble rounded-full text-white text-lg flex items-center justify-center relative">
           <span>EÕ</span>
