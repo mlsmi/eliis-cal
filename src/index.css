@@ -13,3 +13,38 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.navbar {
+  background-color: #F9F9F9;
+}
+
+.nav-user {
+  color: #444444;
+  font-weight: bold;
+}
+
+.nav-kindergarten {
+  color: #A5C365;
+}
+
+.nav-profilebubble {
+  background-color: #A5C365;
+}
+
+.nav-notification {
+  background-color: #A5C365;
+}
+
+.border-gray {
+  border-color: #C2C2C2;
+}
+
+.vertical-border::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 10%; 
+  bottom: 10%; 
+  border-left: 1px solid #C2C2C2;
+  width: 0;
+}

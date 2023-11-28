@@ -1,15 +1,16 @@
-import logo from './logo.png';
 import './App.css';
+import Navbar from './components/Navbar';
+import Sidebar from './components/Sidebar';
+import Dashboard from './components/Dashboard';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} alt="logo" />
-        <p>
-          This will be the ELIIS calendar app
-        </p>
-      </header>
+    <div className="App flex flex-col">
+      <Navbar />
+      <div className="flex flex-grow">
+        <Sidebar />
+        <Dashboard />
+      </div>
     </div>
   );
 }
