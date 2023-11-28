@@ -3,96 +3,110 @@ import { mdiViewDashboard, mdiBookOpenPageVariant, mdiFormatListChecks, mdiEmail
 export const menuItems = [
   {
     title: 'Dashboard',
+    slug: '',
     icon: mdiViewDashboard,
   },
   {
     title: 'Diary',
+    slug: 'diary',
     icon: mdiBookOpenPageVariant,
     children: [
-      { title: 'Add entry' },
-      { title: 'Read entries' },
+      { title: 'Add entry', slug: 'add' },
+      { title: 'Read entries', slug: 'read'  },
     ],
   },
   {
     title: 'Plans',
+    slug: 'plans',
     icon: mdiFormatListChecks,
     children: [
-      { title: 'Plan A' },
-      { title: 'Plan B' },
+      { title: 'Plan A', slug: 'a' },
+      { title: 'Plan B', slug: 'b' },
     ],
   },
   {
     title: 'Messages',
+    slug: 'messages',
     icon: mdiEmail,
   },
   {
     title: 'Announcements',
+    slug: 'announcements',
     icon: mdiBullhorn,
   },
   {
     title: 'Work Schedule',
+    slug: 'work-schedule',
     icon: mdiCalendarClock,
     children: [
-      { title: 'Tasks' },
-      { title: 'Add task' },
+      { title: 'Tasks', slug: 'tasks' },
+      { title: 'Add task', slug: 'add-task' },
     ],
   },
   {
     title: 'Events',
+    slug: 'events',
     icon: mdiCalendarMultiple,
     children: [
-      { title: 'Calendar' },
-      { title: 'List view' },
+      { title: 'Calendar', slug: 'calendar' },
+      { title: 'List view', slug: 'list' },
     ],
   },
   {
     title: 'Gallery',
+    slug: 'gallery',
     icon: mdiImage,
   },
   {
     title: 'Documents',
+    slug: 'documents',
     icon: mdiCloud,
   },
   {
     title: 'Food menu',
+    slug: 'food-menu',
     icon: mdiFood,
     children: [
-      { title: 'Hot dog' },
-      { title: 'Not hot dog' },
+      { title: 'Hot dog', slug: 'hot-dog' },
+      { title: 'Not hot dog', slug: 'not-hot-dog' },
     ],
   },
   {
     title: 'Applications',
+    slug: 'applications',
     icon: mdiApplication,
     children: [
-      { title: 'Installed apps' },
-      { title: 'All apps' },
+      { title: 'Installed apps', slug: 'installed' },
+      { title: 'All apps', slug: 'all' },
     ],
   },
   {
     title: 'Contacts',
+    slug: 'contacts',
     icon: mdiContacts,
     children: [
-      { title: 'All contacts' },
-      { title: 'Add contact' },
-      { title: 'Delete contact' },
+      { title: 'All contacts', slug: 'all' },
+      { title: 'Add contact', slug: 'add' },
+      { title: 'Delete contact', slug: 'delete' },
     ],
   },
   {
     title: 'Surveys',
+    slug: 'surveys',
     icon: mdiFileDocumentCheck,
     children: [
-      { title: 'All surveys' },
-      { title: 'Add survey' },
-      { title: 'Results' },
+      { title: 'All surveys', slug: 'all' },
+      { title: 'Add survey', slug: 'add' },
+      { title: 'Results', slug: 'results' },
     ],
   },
   {
     title: 'Help',
+    slug: 'help',
     icon: mdiHelpCircle,
     children: [
-      { title: 'FAQ' },
-      { title: 'Contact Support' },
+      { title: 'FAQ', slug: 'faq' },
+      { title: 'Contact Support', slug: 'contact' },
     ],
   },
 ];
