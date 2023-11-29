@@ -9,7 +9,7 @@ function EventCalendar() {
       <h1 className="text-2xl mb-4">Event Calendar</h1>
       <div className="hidden md:flex">
         <div className="md:w-52 h-screen border-r border-gray">
-          <h3 className="text-sm font-semibold">TYPES</h3>
+          <h3 className="text-sm font-semibold mb-1">TYPES</h3>
           <ul>
             {eventTypes.map((type, index) => (
               <li key={index} className="flex items-center text-sm py-1">

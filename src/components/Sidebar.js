@@ -30,9 +30,9 @@ function Sidebar() {
               </div>
             </div>
             {item.children && open[index] && (
-              <div className="bg-gray-500/10 rounded-md">
+              <div className="bg-gray-500/10 rounded-md py-1">
                 {item.children.map((child) => (
-                  <div key={child.title} className="p-1 ml-2">
+                  <div key={child.title} className="py-1 ml-3">
                     <Link to={`/${item.slug}/${child.slug}`} className={`text-sm ${location.pathname === `/${item.slug}/${child.slug}` ? 'text-orange-500' : ''}`}>{child.title}</Link>
                   </div>
                 ))}
