@@ -14,21 +14,18 @@ To set up Event Calendar Application, follow these steps:
 
 1. Clone the repository:
 ```
-bash
 git clone https://github.com/mlsmi/eliis-cal.git
 ```
 
 
 2. Navigate into the project directory:
 ```
-bash
 cd eliis-cal
 ```
 
 
 3. Install the dependencies:
 ```
-bash
 npm install
 ```
 
@@ -39,7 +36,6 @@ To run Event Calendar Application in development mode, follow these steps:
 1. Run the following command in your terminal:
 
 ```
-bash
 npm start
 ```
 
@@ -60,7 +56,6 @@ To build Event Calendar Application for production, follow these steps:
 1. Run the following command in your terminal:
 
 ```
-bash
 npm run build
 ```
 
