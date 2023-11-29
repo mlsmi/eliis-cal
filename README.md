@@ -48,6 +48,11 @@ npm start
 
 The page will reload automatically when you make changes to the code.
 
+
+3. To add events to the calendar, navigage to /events/calendar and click "Create new event".
+
+4. To remove all events, click on an event in the calendar and click "Delete all events".
+
 ## Building Event Calendar Application
 
 To build Event Calendar Application for production, follow these steps:
