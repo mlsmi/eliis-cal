@@ -7,8 +7,8 @@ function EventCalendar() {
   return (
     <div className="flex-grow bg-white p-4">
       <h1 className="text-2xl mb-4">Event Calendar</h1>
-      <div className="hidden md:flex">
-        <div className="md:w-52 h-screen border-r border-gray">
+      <div className="flex md:flex">
+        <div className="hidden md:block md:w-52 h-screen border-r border-gray">
           <h3 className="text-sm font-semibold mb-1">TYPES</h3>
           <ul>
             {eventTypes.map((type, index) => (
@@ -25,10 +25,10 @@ function EventCalendar() {
             ))}
           </ul>
         </div>
-        <div className="flex-grow ml-4">
-          <div className="flex justify-between items-center mb-4">
-            <button className="bg-gradient-to-t from-orange-500/70 to-orange-500/50 text-sm text-white rounded px-4 py-2">Create new event</button>
-            <h2 className="text-2xl">October 2023</h2>
+        <div className="flex-grow md:ml-4">
+          <div className="flex justify-between text-center items-center mb-4">
+            <button className="bg-gradient-to-t from-orange-500/70 to-orange-500/50 text-sm text-white rounded px-2 py-2">Create new event</button>
+            <h2 className="text-sm md:text-lg lg:text-2xl">October 2023</h2>
             <div className="flex">
               <button className="bg-gradient-to-t from-white via-gray-500/20 to-white border border-gray-200 rounded-md p-2 mr-2">
                 <Icon path={mdiChevronLeft} size={1} color="orange" />
