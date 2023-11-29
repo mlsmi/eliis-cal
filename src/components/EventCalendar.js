@@ -14,7 +14,7 @@ import 'react-datepicker/dist/react-datepicker.css';
 const db = new Dexie('EventsDatabase');
 
 // Define the schema
-db.version(1).stores({
+db.version(2).stores({
   events: '++id,title,date,time,eventType'
 });
 
@@ -26,12 +26,14 @@ db.open().catch((err) => {
 function EventCalendar() {
   const [events, setEvents] = useState([]);
   const [modalIsOpen, setModalIsOpen] = useState(false);
+  const [viewModalIsOpen, setViewModalIsOpen] = useState(false);
   const [newEvent, setNewEvent] = useState({
     title: '',
     date: new Date(),
     time: '12:00',
     eventType: eventTypes[0].title
   });
+  const [selectedEvent, setSelectedEvent] = useState(null);
 
   useEffect(() => {
     // Fetch events from the database
@@ -70,7 +72,9 @@ function EventCalendar() {
         setEvents(newEvents);
       });
     });
+    alert("All events deleted!");
   };
+
 
   function renderEventContent(eventInfo) {
     const eventType = eventTypes.find(type => type.title === eventInfo.event.extendedProps.eventType);
@@ -96,6 +100,11 @@ function EventCalendar() {
     );
   }
 
+  const handleEventClick = (clickInfo) => {
+    setSelectedEvent(clickInfo.event);
+    setViewModalIsOpen(true); // Open the view modal
+  };
+
   return (
     <div className="flex-grow bg-white p-4">
       <h1 className="text-2xl mb-4">Event Calendar</h1>
@@ -117,15 +126,15 @@ function EventCalendar() {
             ))}
           </ul>
         </div>
-        <button onClick={handleClearEvents}>Clear Events</button>
         <div className="flex-grow md:ml-4">
-        {!modalIsOpen && (
+        {!modalIsOpen && !viewModalIsOpen && (
           <FullCalendar 
             plugins={[dayGridPlugin]} 
             initialView="dayGridMonth"
             firstDay={1}
             events={events}
-            eventContent={renderEventContent} // Add this line
+            eventContent={renderEventContent}
+            eventClick={handleEventClick}
             customButtons={{
               createEventButton: {
                 text: 'Create new event',
@@ -202,6 +211,27 @@ function EventCalendar() {
             Create Event
           </button>
         </form>
+      </Modal>
+      <Modal
+        isOpen={viewModalIsOpen}
+        onRequestClose={() => setViewModalIsOpen(false)}
+        className="modalbg flex items-center justify-center h-screen"
+      >
+        <div className="relative bg-orange-500/60 p-6 rounded shadow-md w-full md:w-1/2">
+          <button 
+            onClick={() => setViewModalIsOpen(false)}
+            className="absolute top-2 right-2 bg-white rounded-full w-8 h-8 flex items-center justify-center"
+          >
+            X
+          </button>
+          <h2><span className="font-semibold">Event name</span>: {selectedEvent?.title}</h2>
+          <p>{selectedEvent?.date}</p>
+          <p>{selectedEvent?.time}</p>
+          <p><span className="font-semibold">Event type</span>: {selectedEvent?.extendedProps.eventType}</p>
+          <div className="mt-4 space-x-2">
+            <button className="bg-red-500 rounded p-2" onClick={handleClearEvents}>Delete all events</button>
+          </div>
+        </div>
       </Modal>
     </div>
   );
