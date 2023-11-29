@@ -18,7 +18,7 @@ function EventCalendar() {
                         backgroundColor: type.title === 'Public holidays' ? 'white' : type.color,
                         border: type.title === 'Public holidays' ? `1px solid ${type.color}` : 'none'
                       }}>
-                  <Icon path={mdiCheck} size={0.5} color={type.title === 'Public holidays' ? type.color : 'white'} />
+                  <Icon path={mdiCheck} size={0.5} color={type.title === 'Public holidays' ? 'black' : 'white'} />
                 </span>
                 {type.title}
               </li>
