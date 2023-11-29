@@ -23,7 +23,7 @@ function Events() {
         {eventItems.map((item, index) => (
           <div
             key={item.title}
-            className="bg-orange-500/50 hover:bg-orange-500/60 shadow rounded-md p-4 flex flex-col items-center justify-center cursor-pointer"
+            className="bg-orange-500/50 hover:bg-orange-500/60 shadow hover:shadow-lg rounded-md p-4 flex flex-col items-center justify-center cursor-pointer"
             onClick={() => navigateToPage(item.slug)}
             onMouseEnter={() => setHoveredItem(item.title)} // Set the hovered item when the mouse enters
             onMouseLeave={() => setHoveredItem(null)} // Clear the hovered item when the mouse leaves
