@@ -24,19 +24,19 @@ function Navbar() {
         <img src={logo} alt="logo" className="w-24 h-8" />
       </div>
       <div className="hidden md:flex items-center space-x-2">
-        <div className="flex space-x-1">
-          {navIcons.map((navIcon, index) => (
-            <div key={index} className="bg-orange-500/60 rounded-full p-2 relative">
-              <Icon path={navIcon.icon} size={0.8} color="white" />
-              {navIcon.notification && (
-                <div className="greenbg absolute top-0 right-0 transform translate-x-1/2 -translate-y-1/2 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">
-                  <span>{navIcon.notification}</span>
-                </div>
-              )}
-            </div>
-          ))}
-        </div>
-        <div className="flex flex-col items-start relative vertical-border pl-4">
+        {navIcons.map((navIcon, index) => (
+          <div key={index} className="bg-orange-500/60 rounded-full p-2 relative">
+            <Icon path={navIcon.icon} size={0.8} color="white" />
+            {navIcon.notification && (
+              <div className="greenbg absolute top-0 right-0 transform translate-x-1/2 -translate-y-1/2 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">
+                <span>{navIcon.notification}</span>
+              </div>
+            )}
+          </div>
+        ))}
+      </div>
+      <div className="flex items-center space-x-2">
+        <div className="hidden md:flex flex-col items-start relative vertical-border pl-4">
           <span className="nav-user text-sm font-bold">{userData.firstname} {userData.lastname}</span>
           <span className="nav-kindergarten text-sm">{userData.kindergarten}</span>
         </div>
