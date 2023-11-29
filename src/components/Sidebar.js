@@ -24,7 +24,7 @@ function Sidebar() {
                       <div className="bg-orange-500/60 rounded-md p-2 inline-block mr-2">
                         <Icon path={item.icon} size={0.6} color="white" className="transform scale-125" />
                       </div>
-                      <span className={`text-sm font-semibold ${location.pathname === `/${item.slug}` ? 'text-orange-500' : ''}`}>{item.title}</span>
+                      <span className={`text-sm font-semibold ${(item.slug === '' && location.pathname === '/') || (item.slug !== '' && location.pathname.includes(`/${item.slug}`)) ? 'text-orange-500' : ''}`}>{item.title}</span>
                     </div>
                   </div>
                 </div>
@@ -37,9 +37,9 @@ function Sidebar() {
                       <div className="bg-orange-500/60 rounded-md p-2 inline-block mr-2">
                         <Icon path={item.icon} size={0.6} color="white" className="transform scale-125" />
                       </div>
-                      <span className={`text-sm font-semibold ${location.pathname === `/${item.slug}` ? 'text-orange-500' : ''}`}>{item.title}</span>
+                      <span className={`text-sm font-semibold ${location.pathname.includes(`/${item.slug}`) ? 'text-orange-500' : ''}`}>{item.title}</span>
                     </div>
-                    <Icon path={open[index] ? mdiChevronDown : mdiChevronRight} size={1} color='black' />
+                    <Icon path={open[index] ? mdiChevronDown : mdiChevronRight} size={1} color={item.children.some(child => location.pathname === `/${item.slug}/${child.slug}`) ? 'orange' : 'black'} />
                   </div>
                 </div>
                 {item.children && open[index] && (

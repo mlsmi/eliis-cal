@@ -15,7 +15,7 @@ function Dashboard() {
       <p className="text-md mb-8">Welcome {userData.firstname} 👋<br/>Find everything you need to run {userData.kindergarten} here.</p>
       <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
         {menuItems.filter(item => item.title !== 'Dashboard').map((item, index) => (
-          <div key={item.title} className="bg-orange-500/40 hover:bg-orange-500/60 border rounded-md p-4 flex flex-col items-center justify-center cursor-pointer" onClick={() => navigateToPage(item.slug)}>
+          <div key={item.title} className="bg-orange-500/40 hover:bg-orange-500/60 shadow rounded-md p-4 flex flex-col items-center justify-center cursor-pointer" onClick={() => navigateToPage(item.slug)}>
             <div className="bg-orange-500/60 rounded-full p-2 inline-block w-12 h-12 flex items-center justify-center">
               <Icon path={item.icon} size={1} color="white" className="transform scale-125" />
             </div>
