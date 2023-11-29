@@ -2,6 +2,8 @@ import React from 'react';
 import { eventTypes } from '../eventTypes';
 import Icon from '@mdi/react';
 import { mdiCheck, mdiChevronLeft, mdiChevronRight } from '@mdi/js';
+import FullCalendar from '@fullcalendar/react'
+import dayGridPlugin from '@fullcalendar/daygrid'
 
 function EventCalendar() {
   return (
@@ -26,19 +28,23 @@ function EventCalendar() {
           </ul>
         </div>
         <div className="flex-grow md:ml-4">
-          <div className="flex justify-between text-center items-center mb-4">
-            <button className="bg-gradient-to-t from-orange-500/70 to-orange-500/50 text-sm text-white rounded px-2 py-2">Create new event</button>
-            <h2 className="text-sm md:text-lg lg:text-2xl">October 2023</h2>
-            <div className="flex">
-              <button className="bg-gradient-to-t from-white via-gray-500/20 to-white border border-gray-200 rounded-md p-2 mr-2">
-                <Icon path={mdiChevronLeft} size={1} color="orange" />
-              </button>
-              <button className="bg-gradient-to-t from-white via-gray-500/20 to-white border border-gray-200 rounded-md p-2 mr-2">
-                <Icon path={mdiChevronRight} size={1} color="orange" />
-              </button>
-            </div>
-          </div>
-          <p>Calendar</p>
+          <FullCalendar 
+            plugins={[dayGridPlugin]} 
+            initialView="dayGridMonth" 
+            customButtons={{
+              createEventButton: {
+                text: 'Create new event',
+                click: function() {
+                  alert('Clicked the custom button!');
+                }
+              }
+            }} 
+            headerToolbar={{
+              left: 'createEventButton',
+              center: 'title',
+              right: 'prev,next today'
+            }} 
+          />
         </div>
       </div>
     </div>

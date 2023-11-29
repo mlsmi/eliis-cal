@@ -63,3 +63,37 @@ body {
 }
 
 
+.fc .fc-button {
+  background: linear-gradient(to top, white, rgba(128, 128, 128, 0.15), white);
+  border: 1px solid rgba(128, 128, 128, 0.1);
+  border-radius: 0.375rem;
+  padding: 0.5rem;
+  margin-right: 0.5rem;
+  color: orange;
+}
+
+.fc .fc-button:hover {
+  background: linear-gradient(to top, rgba(255, 166, 0, 0.254), rgba(255, 166, 0, 0.654), rgba(255, 166, 0, 0.254));
+  border: 1px solid rgba(128, 128, 128, 0.1);
+  color: white;
+}
+
+.fc .fc-today-button {
+  display: none;
+}
+
+.fc-header-toolbar .fc-createEventButton-button {
+  background: linear-gradient(to top, #ff8000ce 10%, #ff8000d5 90%);
+  color: white;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+}
+
+.fc-header-toolbar .fc-createEventButton-button:hover {
+  background: linear-gradient(to top, #ff7f00 10%, #ff7f00 90%);
+  color: white;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+}
