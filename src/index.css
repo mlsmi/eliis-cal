@@ -97,3 +97,7 @@ body {
   border: none;
   cursor: pointer;
 }
+
+.fc-day-sat, .fc-day-sun {
+  color: red;
+}

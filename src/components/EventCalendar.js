@@ -1,11 +1,72 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { eventTypes } from '../eventTypes';
 import Icon from '@mdi/react';
-import { mdiCheck, mdiChevronLeft, mdiChevronRight } from '@mdi/js';
+import { mdiCheck } from '@mdi/js';
 import FullCalendar from '@fullcalendar/react'
 import dayGridPlugin from '@fullcalendar/daygrid'
+import Dexie from 'dexie';
+import Modal from 'react-modal';
+import DatePicker from 'react-datepicker';
+import TimePicker from 'react-time-picker';
+import 'react-datepicker/dist/react-datepicker.css';
+
+// Initialize the database
+const db = new Dexie('EventsDatabase');
+
+// Define the schema
+db.version(1).stores({
+  events: '++id,title,date,time,eventType'
+});
+
+// Open the database
+db.open().catch((err) => {
+  console.error('Failed to open db: ' + (err.stack || err));
+});
 
 function EventCalendar() {
+  const [events, setEvents] = useState([]);
+  const [modalIsOpen, setModalIsOpen] = useState(false);
+  const [newEvent, setNewEvent] = useState({
+    title: '',
+    date: new Date(),
+    time: '12:00',
+    eventType: eventTypes[0].title
+  });
+
+  useEffect(() => {
+    // Fetch events from the database
+    db.events.toArray().then((fetchedEvents) => {
+      setEvents(fetchedEvents);
+    });
+  }, []);
+
+  const handleCreateEvent = () => {
+    // Add a new event to the database
+    db.events.add(newEvent).then(() => {
+      // Fetch events again after adding
+      db.events.toArray().then((newEvents) => {
+        setEvents(newEvents);
+      });
+    });
+    setModalIsOpen(false);
+    setNewEvent({
+      title: '',
+      date: new Date(),
+      time: '12:00',
+      eventType: eventTypes[0].title
+    });
+  };
+
+  const handleClearEvents = () => {
+    // Delete all events from the database
+    db.events.clear().then(() => {
+      // Fetch events again after deleting
+      db.events.toArray().then((newEvents) => {
+        setEvents(newEvents);
+      });
+    });
+  };
+
   return (
     <div className="flex-grow bg-white p-4">
       <h1 className="text-2xl mb-4">Event Calendar</h1>
@@ -27,16 +88,17 @@ function EventCalendar() {
             ))}
           </ul>
         </div>
+        <button onClick={handleClearEvents}>Clear Events</button>
         <div className="flex-grow md:ml-4">
           <FullCalendar 
             plugins={[dayGridPlugin]} 
-            initialView="dayGridMonth" 
+            initialView="dayGridMonth"
+            firstDay={1}
+            events={events} // Pass the events to FullCalendar
             customButtons={{
               createEventButton: {
                 text: 'Create new event',
-                click: function() {
-                  alert('Clicked the custom button!');
-                }
+                click: () => setModalIsOpen(true)
               }
             }} 
             headerToolbar={{
@@ -47,6 +109,50 @@ function EventCalendar() {
           />
         </div>
       </div>
+      <Modal
+        isOpen={modalIsOpen}
+        onRequestClose={() => setModalIsOpen(false)}
+        className="bg-orange-500 flex items-center justify-center z-50"
+      >
+        <form className="bg-orange-500 p-6 rounded shadow-md w-full md:w-1/2">
+          <div className="mb-4">
+            <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="title">
+              Event Title:
+            </label>
+            <input className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" 
+                  id="title" type="text" value={newEvent.title} onChange={e => setNewEvent({...newEvent, title: e.target.value})} />
+          </div>
+          <div className="mb-4">
+            <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="date">
+              Event Date:
+            </label>
+            <DatePicker className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" 
+                        id="date" selected={newEvent.date} onChange={date => setNewEvent({...newEvent, date})} />
+          </div>
+          <div className="mb-4">
+            <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="time">
+              Event Time:
+            </label>
+            <TimePicker className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" 
+                        id="time" value={newEvent.time} onChange={time => setNewEvent({...newEvent, time})} />
+          </div>
+          <div className="mb-4">
+            <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="eventType">
+              Event Type:
+            </label>
+            <select className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" 
+                    id="eventType" value={newEvent.eventType} onChange={e => setNewEvent({...newEvent, eventType: e.target.value})}>
+              {eventTypes.map((type, index) => (
+                <option key={index} value={type.title}>{type.title}</option>
+              ))}
+            </select>
+          </div>
+          <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" 
+                  type="button" onClick={handleCreateEvent}>
+            Create Event
+          </button>
+        </form>
+      </Modal>
     </div>
   );
 }
