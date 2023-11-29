@@ -101,3 +101,7 @@ body {
 .fc-day-sat, .fc-day-sun {
   color: red;
 }
+
+.modalbg {
+  background-color: #F9F9F9;
+}

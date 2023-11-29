@@ -90,6 +90,7 @@ function EventCalendar() {
         </div>
         <button onClick={handleClearEvents}>Clear Events</button>
         <div className="flex-grow md:ml-4">
+        {!modalIsOpen && (
           <FullCalendar 
             plugins={[dayGridPlugin]} 
             initialView="dayGridMonth"
@@ -107,14 +108,15 @@ function EventCalendar() {
               right: 'prev,next today'
             }} 
           />
+        )}
         </div>
       </div>
       <Modal
         isOpen={modalIsOpen}
         onRequestClose={() => setModalIsOpen(false)}
-        className="bg-orange-500 flex items-center justify-center z-50"
+        className="modalbg flex items-center justify-center h-screen"
       >
-        <form className="bg-orange-500 p-6 rounded shadow-md w-full md:w-1/2">
+        <form className="bg-orange-500/60 p-6 rounded shadow-md w-full md:w-1/2">
           <div className="mb-4">
             <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="title">
               Event Title:
