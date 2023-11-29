@@ -42,7 +42,12 @@ function EventCalendar() {
 
   const handleCreateEvent = () => {
     // Add a new event to the database
-    db.events.add(newEvent).then(() => {
+    db.events.add({
+      ...newEvent,
+      extendedProps: {
+        eventType: newEvent.eventType
+      }
+    }).then(() => {
       // Fetch events again after adding
       db.events.toArray().then((newEvents) => {
         setEvents(newEvents);
@@ -66,6 +71,30 @@ function EventCalendar() {
       });
     });
   };
+
+  function renderEventContent(eventInfo) {
+    const eventType = eventTypes.find(type => type.title === eventInfo.event.extendedProps.eventType);
+    const backgroundColor = eventType.title === 'Public holidays' ? 'white' : eventType.color;
+    const border = eventType.title === 'Public holidays' ? `1px solid ${eventType.color}` : 'none';
+    const color = eventType.title === 'Public holidays' ? 'black' : 'white';
+  
+    return (
+      <>
+        <div style={{ 
+          backgroundColor, 
+          border,
+          color, 
+          width: 'calc(100% - 2px)', 
+          height: '100%', 
+          marginLeft: '1px', 
+          marginRight: '1px', 
+          paddingLeft: '4px' 
+        }}>
+          {eventInfo.event.title}
+        </div>
+      </>
+    );
+  }
 
   return (
     <div className="flex-grow bg-white p-4">
@@ -95,7 +124,8 @@ function EventCalendar() {
             plugins={[dayGridPlugin]} 
             initialView="dayGridMonth"
             firstDay={1}
-            events={events} // Pass the events to FullCalendar
+            events={events}
+            eventContent={renderEventContent} // Add this line
             customButtons={{
               createEventButton: {
                 text: 'Create new event',
@@ -116,7 +146,13 @@ function EventCalendar() {
         onRequestClose={() => setModalIsOpen(false)}
         className="modalbg flex items-center justify-center h-screen"
       >
-        <form className="bg-orange-500/60 p-6 rounded shadow-md w-full md:w-1/2">
+        <form className="relative bg-orange-500/60 p-6 rounded shadow-md w-full md:w-1/2">
+          <button 
+            onClick={() => setModalIsOpen(false)}
+            className="absolute top-2 right-2 bg-white rounded-full w-8 h-8 flex items-center justify-center"
+          >
+            X
+          </button>
           <div className="mb-4">
             <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="title">
               Event Title:
@@ -135,8 +171,20 @@ function EventCalendar() {
             <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="time">
               Event Time:
             </label>
-            <TimePicker className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" 
-                        id="time" value={newEvent.time} onChange={time => setNewEvent({...newEvent, time})} />
+            <TimePicker 
+              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" 
+              id="time" 
+              value={newEvent.time} 
+              onChange={time => {
+                const [hours, minutes] = time.split(':');
+                const date = new Date(newEvent.date);
+                date.setHours(parseInt(hours));
+                date.setMinutes(parseInt(minutes));
+                setNewEvent({...newEvent, date});
+              }}
+              clockIcon={null}
+              clearIcon={null}
+            />
           </div>
           <div className="mb-4">
             <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="eventType">
