@@ -1,13 +1,12 @@
 # Event Calendar Application
 
-This is a React application that allows you to create and manage events on a calendar. The application uses Dexie.js for IndexedDB storage, FullCalendar for the calendar interface, and Tailwind CSS for styling.
+This is a React application that allows you to create and delete all events on a calendar. The application uses Dexie.js for IndexedDB storage, FullCalendar for the calendar interface, and Tailwind CSS for styling.
 
 ## Prerequisites
 
 Before you begin, ensure you have met the following requirements:
 
 - You have installed Node.js and npm. If not, you can download and install it from [here](https://nodejs.org/en/download/).
-- You have a basic understanding of React and JavaScript.
 
 ## Setting Up Event Calendar Application
 
@@ -16,14 +15,14 @@ To set up Event Calendar Application, follow these steps:
 1. Clone the repository:
 ```
 bash
-git clone https://github.com/your-username/your-repo-name.git
+git clone https://github.com/mlsmi/eliis-cal.git
 ```
 
 
 2. Navigate into the project directory:
 ```
 bash
-cd your-repo-name
+cd eliis-cal
 ```
 
 
@@ -47,7 +46,7 @@ npm start
 
 2. Open your web browser and visit [http://localhost:3000](http://localhost:3000).
 
-The page will reload automatically when you make changes to the code. You will also see any lint errors in the console.
+The page will reload automatically when you make changes to the code.
 
 ## Building Event Calendar Application
 
